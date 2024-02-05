@@ -1,18 +1,26 @@
+import { FilterValuesType, TaskType } from "../App";
 import { AddTask } from "./addTask/AddTask";
-import { TaskPropsType, TasksList } from "./tasksList/TasksList";
+import { TasksList } from "./tasksList/TasksList";
+import { TaskPropsType } from "./tasksList/taskListItem/TaskListItem";
 import { TodoListHeader } from "./todoListHeader/TodoListHeader";
 
 type TodoList = {
     title: string
-    tasks: Array<TaskPropsType>
+    tasks: Array<TaskType>
+    removeTask: (taskId: number) => void
+    changeFilter: (filter: FilterValuesType) => void
 }
 
-export function TodoList(props: TodoList) {
-    return ( 
+export function TodoList({ title, tasks, removeTask, changeFilter }: TodoList) {
+    return (
         <div>
-            <TodoListHeader title={props.title} />
+            <TodoListHeader title={title} />
             <AddTask />
-            <TasksList tasks={props.tasks} />
+            <TasksList
+                tasks={tasks}
+                removeTask={removeTask}
+                changeFilter={changeFilter}
+            />
         </div>
     )
 }

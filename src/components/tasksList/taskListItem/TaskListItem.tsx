@@ -1,10 +1,21 @@
-import { TaskPropsType } from "../TasksList";
+import { Button } from "../../Button";
 
-export function TaskListItem(props: TaskPropsType) {
+export type TaskPropsType = {
+    id: number
+    title: string
+    isDone: boolean
+    removeTask: (taskId: number) => void
+
+}
+
+export function TaskListItem({id, title, isDone, removeTask}: TaskPropsType) {
+
     return (
-        <li key={props.id}>
-            <input type="checkbox" checked={props.isDone} />
-            <span>{props.title}</span>
+        <li key={id}>
+            <input type="checkbox" checked={isDone} />
+            <span>{title}</span>
+            <Button title="x" onClickHandler={()=>removeTask(id)} />
         </li>
 )
 }
+
