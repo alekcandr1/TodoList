@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { TodoList } from './components/TodoList';
+import {Accordion} from './components/Accordion';
 
 export type TaskType = {
     id: number
@@ -40,9 +41,9 @@ function App() {
     //UI
     let tasksForTodoList = list1
     if (filter === 'active') {
-        tasksForTodoList = list1.filter(task => task.isDone === false)
+        tasksForTodoList = list1.filter(task => !task.isDone)
     } else if (filter === 'completed') {
-        tasksForTodoList = list1.filter(task => task.isDone === true)
+        tasksForTodoList = list1.filter(task => task.isDone)
     }
 
     return (
@@ -53,6 +54,7 @@ function App() {
                 removeTask={removeTask}
                 changeFilter={changeFilter}
             />
+            <Accordion title={'Accordion'} isOpen={true}/>
 
             {/* <TodoList 
             title="Movies" 
